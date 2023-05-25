@@ -47,13 +47,92 @@
 					},
 					"activities": [
 						{
-							"name": "Wait1",
-							"type": "Wait",
+							"name": "Copy data1",
+							"type": "Copy",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 1
-							}
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"wildcardFileName": "*.csv",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"dataIntegrationUnits": 8,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "srcfiles",
+									"type": "DatasetReference",
+									"parameters": {
+										"srccontainer": {
+											"value": "@item().src_container",
+											"type": "Expression"
+										},
+										"srcfolder": {
+											"value": "@item().src_folder",
+											"type": "Expression"
+										},
+										"srcfiles": {
+											"value": "@item().src_filename",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "src_target",
+									"type": "DatasetReference",
+									"parameters": {
+										"descontainer": {
+											"value": "@item().destination_container",
+											"type": "Expression"
+										},
+										"desfolder": {
+											"value": "@item().destination_folder",
+											"type": "Expression"
+										},
+										"desfiles": {
+											"value": "@item().destination_filename",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
