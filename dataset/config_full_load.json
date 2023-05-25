@@ -1,0 +1,49 @@
+{
+	"name": "config_full_load",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "des_folder"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "src_container",
+				"type": "varchar"
+			},
+			{
+				"name": "src_folder",
+				"type": "varchar"
+			},
+			{
+				"name": "src_filename",
+				"type": "varchar"
+			},
+			{
+				"name": "destination_container",
+				"type": "varchar"
+			},
+			{
+				"name": "destination_folder",
+				"type": "varchar"
+			},
+			{
+				"name": "destination_filename",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "configfull_load"
+		}
+	}
+}
