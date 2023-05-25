@@ -1,0 +1,9 @@
+{
+	"name": "demodataertgr",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f7ec0aaa-c0ae-49a7-be7a-c662c1de1973",
+		"tenantId": "8ef5e787-af85-4b1f-9e33-424fe57fa820"
+	}
+}
