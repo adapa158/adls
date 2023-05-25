@@ -1,0 +1,47 @@
+{
+	"name": "src_target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "storageaccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"descontainer": {
+				"type": "string"
+			},
+			"desfolder": {
+				"type": "string"
+			},
+			"desfiles": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "target_folder"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().desfiles",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().desfolder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().descontainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

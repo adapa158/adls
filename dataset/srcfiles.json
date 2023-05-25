@@ -1,0 +1,47 @@
+{
+	"name": "srcfiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "storageaccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"srccontainer": {
+				"type": "string"
+			},
+			"srcfolder": {
+				"type": "string"
+			},
+			"srcfiles": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "src_dataset"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().srcfiles",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().srcfolder",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().srccontainer",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
